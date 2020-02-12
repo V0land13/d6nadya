@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+<!DOCTYPE html>
+{% load static %}
+<html lang="en"></html>
+<head>
+  <meta charset="UTF-8">
+  {% block title %}<title>Домашняя библиотека/все книги</title>{% endblock %}
+</head>
+<body>
+  {% block content %}
+  <div class="Tabelle">
+
+  <div class="title">
+  <h2>Добро пожаловать в {{ title }} ! <br>
+  Тут собрано {{ books|length }} книг из моей личной коллекции.</h2>
+  </div>
+    <table class="table table-bordered">
+     <thead>
+        <tr>
+            <th>Название книги</th>
+            <th>Картинка</th>
+            <th>Издательство</th>
+            <th>Год выпуска</th>
+            <th>Автор</th>            
+            <th>кол-во шт</th>
+            <th>Кто взял книгу</th>
+        </tr>
+      </thead>
+         {% for book in books %}
+          <tr>
+            <td>{{ book.title }}</td>
+            <td>{% if book.image %}<img src="/static/img/{{ book.image }}" width="80px">{% endif %}</td>
+            <td>{{ book.redaction.name }}</td>
+            <td>{{ book.year_release }}</td>
+            <td>{{ book.author.full_name }}</td>            
+            <td>{{ book.copy_count }}</td>
+            <td>{{ book.reader.full_name }}</td>
+            <td>
+                <form action="/index/book_increment/" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <script>
+                      var csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+                      </script>
+                    <input type="hidden" name="id" value="{{book.id}}" />
+                    <input type="submit" value="Увеличить кол-во" />
+                </form>
+                <form action="/index/book_decrement/" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <script>
+                      var csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+                      </script>
+                    <input type="hidden" name="id" value="{{book.id}}" />
+                    <input type="submit" value="Уменьшить кол-во" />
+                </form>
+            </td>
+          </tr>
+      {% endfor %}
+    </table>
+<div>
+{% endblock %}
+</body>
+</html>

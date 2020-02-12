@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+
+    {% block title %}<title>Домашняя библиотека\Издательство</title>{% endblock %}
+   
+<body>
+{% block content %}
+    <table class="table table-striped">
+    {% for redaction in redactions %}
+        <ul class="list-group">
+            <li class="list-group-item">
+                {{ redaction.name }}
+                <ul class="list-group">
+                    {% for book in redaction.books.all %}
+                        <li class="list-group-item"> {{ book.title }}</li>
+                    {% endfor %}
+                </ul>
+            </li>
+        </ul>
+       {% endfor %}
+    </table>
+{% endblock %}
+</body>
+</html>
+

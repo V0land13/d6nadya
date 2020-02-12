@@ -1,0 +1,27 @@
+
+/*@font-face {
+    font-family: This;
+      src: url('../fonts/Lemonada-Regular.ttf');
+    }*/
+
+body {
+    background-color: rgb(221, 243, 228);
+    /*font-family: This, sans-serif;*/
+}
+
+.header-text h1 {
+   
+    margin-right: 200px;
+    margin-left: 250px;
+    font-size: 50px;
+}
+
+h2 {
+    display:block;
+    margin-left: 150px;
+    font-size: 20px;
+}
+footer {
+    display:block;
+    background-color: rgb(11, 143, 53);
+}

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	{% block title %}<title>Домашняя библиотека\главная</title>{% endblock %}
+</head>
+<body>
+    {% block content %}
+<div class="container">
+    <h2 class="display-4 text-center my-4">
+        Добро пожаловать в {{ title }}  <br>.
+Тут собрано {{ books|length }} книг из моей личной коллекции.
+    </h2>
+</div>
+{% endblock %}
+</body>
+</html>
